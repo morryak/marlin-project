@@ -1,0 +1,10 @@
+{
+    "require": {
+        "agorlov/lipid": "^1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}

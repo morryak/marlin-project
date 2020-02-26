@@ -1,0 +1,26 @@
+{# My First Template #}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>I'am Lipid :o)</title>
+</head>
+<body>
+
+
+  {% if name %}
+  <p>
+    <i>Lipid:</i> Glad to see you, <b>{{ name }}!</b><br>
+    <i>Lipid:</i> Let's create human-oriented software models.
+    It's time to talk to computer in human language.
+  </p>
+  {% else %}
+  <h1>I'am Lipid. Try me!</h1>
+
+  <form method="GET" action="">
+    <input type="text" name="name" value="" placeholder="Your name">
+    <input type="submit" value="Greet!">
+  </form>
+  {% endif %}
+
+</body>
+</html>
