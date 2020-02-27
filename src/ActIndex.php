@@ -6,6 +6,7 @@ use Lipid\Action;
 use Lipid\Request;
 use Lipid\Response;
 use Lipid\Request\RqGET;
+use Lipid\Tpl;
 use Lipid\Tpl\Twig;
 
 /**

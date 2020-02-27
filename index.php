@@ -2,21 +2,27 @@
 
 require_once './vendor/autoload.php';
 
+use Controllers\ActLogin;
+use Controllers\ActRegistration;
 use Lipid\App\ApplicationStd;
 use MyApp\ActIndex;
 
 /**
- * My web application
  *
- * Short app description
- *
- * @author {- write your name in history -}
+ * @author Ilin Mikhail
  */
+
+if ($_SERVER['APP_MODE'] == 'dev') {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
+
 (new ApplicationStd(
     [
         '/' => new ActIndex(),
-        //'/login' => new ActLogin(),
-        //'/logout' => new ActLogout(),
+        '/login' => new ActLogin(),
+        '/register' => new ActRegistration(),
         //'/note' => new ActNote(),
     ]
 ))->start();
