@@ -62,11 +62,13 @@
               <div class="media">
                 <img src="img/no-user.jpg" class="mr-3" alt="..." width="64" height="64">
                 <div class="media-body">
-                  <h5 class="mt-0">John Doe</h5>
-                  <span><small>12/10/2025</small></span>
+                  {% for date in dates %}
+                  <h5 class="mt-0">{{ date['name'] }}</h5>
+                  <span><small>{{ date['date'] }}</small></span>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati.
+                    {{ date['comment'] }}
                   </p>
+                  {% endfor %}
                 </div>
               </div>
             </div>

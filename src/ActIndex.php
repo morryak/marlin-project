@@ -16,7 +16,8 @@ use Lipid\Tpl\Twig;
  *
  * @author {- write your name in history -}
  */
-final class ActIndex implements Action {
+final class ActIndex implements Action
+{
     private $GET;
     private $tpl;
 
@@ -31,12 +32,25 @@ final class ActIndex implements Action {
 
     public function handle(Response $resp): Response
     {
-        $name = $this->GET->param('name');
+        $data = [
+            'first' =>
+            [
+                'name' => 'Andrey',
+                'date' => '02/02/2012',
+                'comment' => 'This is my first comment'
+            ],
+            'second' =>
+            [
+                'name' => 'Mikhael',
+                'date' => '11/05/2013',
+                'comment' => 'This is my second comment'
+            ]
+        ];
 
         return $resp->withBody(
-                $this->tpl->render([
-                    'name' => $name
-                ])
+            $this->tpl->render([
+                'dates' => $data
+            ])
         );
     }
 }
