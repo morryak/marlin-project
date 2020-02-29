@@ -4,6 +4,7 @@ require_once './vendor/autoload.php';
 
 use Controllers\ActLogin;
 use Controllers\ActRegistration;
+use Controllers\CommentsList;
 use Lipid\App\ApplicationStd;
 use MyApp\ActIndex;
 
@@ -23,6 +24,6 @@ if ($_SERVER['APP_MODE'] == 'dev') {
         '/' => new ActIndex(),
         '/login' => new ActLogin(),
         '/register' => new ActRegistration(),
-        //'/note' => new ActNote(),
+        '/store' => new CommentsList(),
     ]
 ))->start();

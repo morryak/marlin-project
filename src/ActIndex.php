@@ -2,6 +2,7 @@
 
 namespace MyApp;
 
+use Controllers\CommentsList;
 use Lipid\Action;
 use Lipid\Request;
 use Lipid\Response;
@@ -47,9 +48,11 @@ final class ActIndex implements Action
             ]
         ];
 
+        $comments = new CommentsList();
+
         return $resp->withBody(
             $this->tpl->render([
-                'dates' => $data
+                'comments' => $comments->list()
             ])
         );
     }
