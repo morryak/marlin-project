@@ -58,19 +58,19 @@
               <div class="alert alert-success" role="alert">
                 Комментарий успешно добавлен
               </div>
-
+              {% for comment in comments %}
               <div class="media">
                 <img src="img/no-user.jpg" class="mr-3" alt="..." width="64" height="64">
                 <div class="media-body">
-                  {% for date in dates %}
-                  <h5 class="mt-0">{{ date['name'] }}</h5>
-                  <span><small>{{ date['date'] }}</small></span>
+
+                  <h5 class="mt-0">{{ comment.name }}</h5>
+                  <span><small>{{ comment.date }}</small></span>
                   <p>
-                    {{ date['comment'] }}
+                    {{ comment.text }}
                   </p>
-                  {% endfor %}
                 </div>
               </div>
+                  {% endfor %}
             </div>
           </div>
         </div>

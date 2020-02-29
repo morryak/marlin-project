@@ -14,7 +14,7 @@ class ActAdmin implements Action
 
     public function __construct()
     {
-        $this->tpl = $tpl ?? new Twig('admin.twig','/tpl/admin');
+        $this->tpl = $tpl ?? new Twig('admin.twig',getcwd().'/tpl/admin');
     }
 
     public function handle(Response $resp): Response
