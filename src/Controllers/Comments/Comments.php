@@ -14,8 +14,9 @@ interface Comments
      *  Добавление комментария
      *
      * @param string $comment Комментарий
+     * @param string $userName Имя пользователя
      */
-    public function add(string $comment): void;
+    public function add(string $comment,string $userName): void;
 
     /**
      * Список комментариев

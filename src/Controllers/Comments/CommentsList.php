@@ -3,7 +3,6 @@
 
 namespace Controllers;
 
-//use Lipid\Tpl\Twig;
 use MyApp\MyPDO;
 use PDO;
 
@@ -15,12 +14,9 @@ use PDO;
 class CommentsList implements Comments
 {
     private $pdo;
-//    private $tpl;
-    private $comment;
 
     public function __construct(PDO $pdo = null)
     {
-////        $this->tpl = $tpl ?? new Twig('index.twig', getcwd() . '/tpl');
         $this->pdo = $pdo ?? new MyPDO();
     }
 
@@ -28,11 +24,16 @@ class CommentsList implements Comments
      *  Добавление комментария
      *
      * @param string $comment Комментарий
-//     * @param string $userID ID пользователя
+     * @param string $userName Имя пользователя
      */
-    public function add(string $comment): void
+    public function add(string $comment, string $userName): void
     {
-        // TODO: Implement add() method.
+        $qComment = $this->pdo->quote($comment);
+        $qUserName = $this->pdo->quote($userName);
+        $qCommentDate = $this->pdo->quote(date('d-m-Y'));
+        $query = "INSERT INTO comments SET user_comment = $qComment, user_name = $qUserName, comment_date = $qCommentDate";
+
+        $this->pdo->query($query);
     }
 
     /**
@@ -42,11 +43,10 @@ class CommentsList implements Comments
      */
     public function list(): array
     {
-        $pdo = new MyPDO();
         $sql = "SELECT * FROM comments";
-        $statement = $pdo->query($sql);
+        $statement = $this->pdo->query($sql);
         $statement->execute();
-//        var_dump($statement->fetchAll());die();
-        return  $statement->fetchAll();
+
+        return $statement->fetchAll();
     }
 }
