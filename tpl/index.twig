@@ -55,9 +55,11 @@
             <div class="card-header"><h3>Комментарии</h3></div>
 
             <div class="card-body">
-              <div class="alert alert-success" role="alert">
-                Комментарий успешно добавлен
-              </div>
+              {% if messageIsSend %}
+                <div class="alert alert-success" role="alert">
+                  Комментарий успешно добавлен
+                </div>
+              {% endif %}
               {% for comment in comments %}
               <div class="media">
                 <img src="img/no-user.jpg" class="mr-3" alt="..." width="64" height="64">

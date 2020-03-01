@@ -6,27 +6,29 @@ namespace Controllers;
 
 use Lipid\Action;
 use Lipid\Response;
-use MyApp\MyPDO;
+use Lipid\Tpl;
+use Lipid\Tpl\Twig;
 
 class ActAddComment implements Action
 {
     private $POST;
-    private $pdo;
+    private $tpl;
 
-    public function __construct($POST = null, MyPDO $pdo = null)
+    public function __construct($POST = null, Tpl $tpl = null)
     {
-        $this->pdo = $pdo ?? new MyPDO();
         $this->POST = $POST ?? $_POST;
+        $this->tpl = $tpl ?? new Twig('index.twig', getcwd() . '/tpl');
     }
-
 
     public function handle(Response $resp): Response
     {
-
         $comment = new CommentsList();
         $comment->add($this->POST['name'], $this->POST['text']);
-        return $resp->withHeaders(['Location:/']);
 
 
+        return $resp->withBody($this->tpl->render([
+            'messageIsSend' => true,
+            'comments' => $comment->list()
+        ]));
     }
 }
