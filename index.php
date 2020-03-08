@@ -5,7 +5,6 @@ require_once './vendor/autoload.php';
 use Controllers\ActAddComment;
 use Controllers\ActLogin;
 use Controllers\ActRegistration;
-use Controllers\CommentsList;
 use Lipid\App\ApplicationStd;
 use MyApp\ActIndex;
 

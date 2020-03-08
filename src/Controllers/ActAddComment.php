@@ -4,6 +4,7 @@
 namespace Controllers;
 
 
+use Exception;
 use Lipid\Action;
 use Lipid\Response;
 use Lipid\Tpl;
@@ -22,10 +23,24 @@ class ActAddComment implements Action
 
     public function handle(Response $resp): Response
     {
-        $comment = new CommentsList();
-        $comment->add($this->POST['name'], $this->POST['text']);
+        try {
+            if ($this->POST) {
+                if (empty($this->POST['name'])) {
+                    throw new Exception('Заполните имя');
+                }
+                if (empty($this->POST['text'])) {
+                    throw new Exception('Заполните текст комментария');
+                }
 
-
+                $comment = new CommentsList();
+                $comment->add($this->POST['name'], $this->POST['text']);
+            }
+        } catch (Exception $exception) {
+            return $resp->withBody($this->tpl->render([
+                'error' => $exception->getMessage(),
+                'comments' => (new CommentsList())->list()
+            ]));
+        }
         return $resp->withBody($this->tpl->render([
             'messageIsSend' => true,
             'comments' => $comment->list()

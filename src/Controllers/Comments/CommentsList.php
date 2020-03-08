@@ -30,7 +30,7 @@ class CommentsList implements Comments
     {
         $qComment = $this->pdo->quote($comment);
         $qUserName = $this->pdo->quote($userName);
-        $qCommentDate = $this->pdo->quote(date('d-m-Y'));
+        $qCommentDate = $this->pdo->quote(date("Y-m-d H:i:s"));
         $query = "INSERT INTO comments SET user_comment = $qComment, user_name = $qUserName, comment_date = $qCommentDate";
 
         $this->pdo->query($query);
@@ -43,7 +43,7 @@ class CommentsList implements Comments
      */
     public function list(): array
     {
-        $sql = "SELECT * FROM comments";
+        $sql = "SELECT * FROM comments ORDER BY comment_date DESC";
         $statement = $this->pdo->query($sql);
         $statement->execute();
 
